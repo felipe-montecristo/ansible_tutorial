@@ -1,8 +1,11 @@
-[SRVs]
+[servers]
 tutorial_srv1 ansible_host=172.17.0.2
 tutorial_srv2 ansible_host=172.17.0.3
 debianSRV ansible_host=172.17.0.4
 
-[SRVs:vars]
+[workstation]
+localhost ansible_host=192.168.8.153 ansible_user=felipe ansible_become_pass=password
+
+[servers:vars]
 ansible_user=testuser
 ansible_become_pass=password

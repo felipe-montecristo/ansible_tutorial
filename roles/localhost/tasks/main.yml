@@ -1,0 +1,15 @@
+- name: install sysadmin packages
+  tags: nmap, htop, tmux
+  apt:
+    name: nmap, htop, tmux
+    state: latest
+
+- name: create list.txt
+  tags: file
+  copy:
+    content: "Moin digger"
+    dest: /liste.txt
+    owner: root
+    group: root
+    mode: 0644
+    

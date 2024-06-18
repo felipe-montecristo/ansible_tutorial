@@ -1,0 +1,25 @@
+- name: create developers group
+  group:
+    name: developers
+    state: present
+
+- name: create user simone
+  user:
+    name: simone
+    state: present
+    groups: root, developers
+    create_home: yes
+    shell: /bin/bash
+
+- name: add ssh key for simone
+  authorized_key:
+    user: simone
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCmRkcjQQgnSnqnkhksP/H1z4HHSe0DXgwBZ2zjivlhRzA7AwmlTsXtvl/heMtjQiwhzXlIGr2etDnZRnwiwgiKqP9xpTvfyuvunxK4WXkDYEEceIZVcKnaqwblVy/bsmwVOZzcvPb4l3AAKAvCJEkOsNemzMvsPypcVBHYIC/aONNrXZ3Pcx2dk5cx+Ueeo0WikEdQp+vffaopiv95jKjMEyHvDEeaheKhMfmBwP2724GZaAq9UQPIWEbd1X4MAYSzveUj4imIT41SLnyt/3wE77127c7PWLGmsiKktcteKf/7CplRFlqo2kWCeo+rfC9TmHWC+9zBT3HvWvt64ZYAbNVSo7kDLeB/XEu4J8qFF3MM7EcnCpDHMzB+nffEticEwdJ89NY7AZzKen3EmAQ0GVkE8P3iryjFhuKDGLMzCV9bPIGz5d4+DXQfZBMUS8BOqltAE3vfDtIbq2EXaYKunTn3GMLsJPqqjWDzq/S8vX8vQm/+WUZmfz6LSHNvhjE= felipe@Xmachine"
+
+- name: add sudoers file for simone
+  copy:
+    src: sudoer_simone
+    dest: /etc/sudoers.d/simone
+    owner: root
+    group: root
+    mode: 0440
