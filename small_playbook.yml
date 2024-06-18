@@ -1,0 +1,40 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install packages
+    tags: apache2, tree, locate
+    apt: 
+      name: apache2, tree, locate
+      state: latest
+      update_cache: yes
+
+  - name: copy index.html
+    tags: copy
+    copy:
+      src: /home/felipe/Desktop/github/ansible_tutorial/index.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: "0644"
+
+  - name: Download file using wget
+    tags: wget  
+    ansible.builtin.command:
+      cmd: "wget -O /home/testuser/terrarium.zip https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip"
+
+  - name: unzip downloaded file
+    tags: unzip 
+    unarchive:
+      src: /home/testuser/terrarium.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: "0755"
+      owner: root
+      group: root   
+
+  - name: start apache2
+    tags: apache2
+    command: service apache2 start
