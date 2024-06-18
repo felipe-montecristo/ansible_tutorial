@@ -11,7 +11,7 @@
       user:
         name: simone
         state: present
-        groups: root,developers  # Hier fügst du den Benutzer zur "developers" Gruppe hinzu
+        groups: root,developers
         create_home: yes
         shell: /bin/bash
         comment: "new user"
@@ -21,7 +21,8 @@
         user: simone
         key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnUweIwP77TMvB6gZYniMlB3glfsypz2BQmxZFbitHdWqXsEsq7Ej4YCj8bsKZFlSKCKqHdQR4S//pUMeh4YzBOKH9jMOxshIPeNcIGdV6Dot9u9Ckl/qcU2vGCbll3eAJwoDhIulLSmBFt0jZZN25GFqEd0J191D5IgJIoIZ54+rPD/Pbbf1gmZVAGzK/6qXrXos2VDOlO2DwVM3TgU1EzQqgMPCXfbPu9FoLGDTs+nKgOhpsmdyxxV2WafgJUjds8KIUGzfG6s3zrs+5/oJnhLiF8aByK9prgw0XXjmV1oz0uMIb7oRDnP8dER3e6NcBNZGJrfek+zOMKAqyaB/WrWzzYhw4P7idU5RXPIl/lGmZIE6Wuu09eTPQ9YSYbcdrsLG0SCc1c4ePXcb64DBV9UEfB1dhiGHI4HB9HxTKSlNk9maEjBpbIiJ5zK4Khw8T3msgTCzqLRRJcigQjInxnlGxWI2vDCusMkQ2D5TmuOncZ7lCNYD0s4cCkiLLSsk= felipe@Xmachine"
 
-    - name: add sudoers file for simone
+    - name: add sudoers file for simone #simone kann sudo ohne Passworteingabe verwenden.
+
       copy:
         src: sudoer_simone
         dest: /etc/sudoers.d/simone
